@@ -24,8 +24,9 @@ func NewPayloadModule() *PayloadModule {
 func (m PayloadModule) Add(ctx context.Context, param model.Payload) (interface{}, *Error) {
 
 	msg := &fcm.Message{
-		Condition: fmt.Sprintf(`'%s' in topics`, param.Topic),
-		Data:      param.Data,
+		Condition:    fmt.Sprintf(`'%s' in topics`, param.Topic),
+		Data:         param.Data,
+		Notification: param.Notification,
 	}
 
 	client, err := fcm.NewClient(param.ApiKey)
